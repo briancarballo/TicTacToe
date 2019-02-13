@@ -1,8 +1,9 @@
 package edu.quinnipiac.ser210.tictactoe;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+
 
 /**
  * TicTacToe class implements the interface
@@ -105,31 +106,34 @@ public class TicTacToe implements ITicTacToe {
 	  /**
 	   *  Print the game board 
 	   */
-	   public  void printBoard() {
+	   public Integer[] printBoard() {
+          ArrayList<Integer> state = new ArrayList<Integer>();
 	      for (int row = 0; row < ROWS; ++row) {
 	         for (int col = 0; col < COLS; ++col) {
-	            printCell(board[row][col]); // print each of the cells
-	            if (col != COLS - 1) {
-	               System.out.print("|");   // print vertical partition
-	            }
+	            printCell(board[row][col],state); // print each of the cells
+	            //if (col != COLS - 1) {
+	              // System.out.print("|");   // print vertical partition
+	           // }
 	         }
-	         System.out.println();
-	         if (row != ROWS - 1) {
-	            System.out.println("-----------"); // print horizontal partition
-	         }
+	        // System.out.println();
+	         //if (row != ROWS - 1) {
+	           // System.out.println("-----------"); // print horizontal partition
+	        // }
 	      }
-	      System.out.println();
+	      //System.out.println();
+	      Integer[] arr = state.toArray(new Integer[state.size()]);
+	      return arr;
 	   }
 	 
 	   /**
 	    * Print a cell with the specified "content" 
 	    * @param content either CROSS, NOUGHT or EMPTY
 	    */
-	   public  void printCell(int content) {
+	   public  void printCell(int content, ArrayList<Integer> state) {
 	      switch (content) {
-	         case EMPTY:  System.out.print("   "); break;
-	         case NOUGHT: System.out.print(" O "); break;
-	         case CROSS:  System.out.print(" X "); break;
+	         case EMPTY:  state.add(0); break;
+	         case NOUGHT: state.add(1); break;
+	         case CROSS:  state.add(2); break;
 	      }
 	   }
 

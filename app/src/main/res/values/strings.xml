@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Tic Tac Toe</string>
+    <string-array name="buttons">
+        <item>TTT0</item>
+        <item>TTT1</item>
+        <item>TTT2</item>
+        <item>TTT3</item>
+        <item>TTT4</item>
+        <item>TTT5</item>
+        <item>TTT6</item>
+        <item>TTT7</item>
+        <item>TTT8</item>
+    </string-array>
 </resources>
