@@ -1,92 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".GameBoard">
 
-    <GridLayout
+    <TextView
+        android:id="@+id/welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:visibility="visible" />
+
+    <GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:columnCount="3"
         android:rowCount="3"
-        tools:layout_editor_absoluteX="73dp"
-        tools:layout_editor_absoluteY="125dp">
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp">
 
-        <Button
+        <ImageButton
             android:id="@+id/button9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:text="Button" />
 
-        <Button
+        <ImageButton
             android:id="@+id/button8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:text="Button" />
 
-        <Button
+        <ImageButton
             android:id="@+id/button7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:text="Button" />
 
-        <Button
+        <ImageButton
             android:id="@+id/button6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:text="Button" />
 
-        <Button
+        <ImageButton
             android:id="@+id/button5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:text="Button" />
 
-        <Button
+        <ImageButton
             android:id="@+id/button4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:text="Button" />
 
-        <Button
+        <ImageButton
             android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:text="Button" />
 
-        <Button
+        <ImageButton
             android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:text="Button"
-            tools:layout_editor_absoluteX="263dp"
-            tools:layout_editor_absoluteY="200dp" />
+             />
 
-        <Button
+        <ImageButton
             android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:text="Button"
-            tools:layout_editor_absoluteX="161dp"
-            tools:layout_editor_absoluteY="221dp" />
+            />
     </GridLayout>
 
-    <Button
-        android:id="@+id/button10"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Reset"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="444dp" />
+        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/button11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Quit"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="565dp" />
+        <TextView
+            android:id="@+id/turn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="It's your turn!" />
 
-</android.support.constraint.ConstraintLayout>
+        <Button
+            android:id="@+id/button10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reset" />
+
+        <Button
+            android:id="@+id/button11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quit" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
