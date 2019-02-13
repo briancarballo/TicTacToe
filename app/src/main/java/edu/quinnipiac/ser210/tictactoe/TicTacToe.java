@@ -1,5 +1,8 @@
 package edu.quinnipiac.ser210.tictactoe;
 
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
@@ -41,6 +44,7 @@ public class TicTacToe implements ITicTacToe {
 		else board[location/3][location%3] = player; 
 	}
 
+	@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 	@Override
 	public int getComputerMove() {
 		int value,check1,check2,check3;

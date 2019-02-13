@@ -96,15 +96,17 @@
             android:text="It's your turn!" />
 
         <Button
-            android:id="@+id/button10"
+            android:id="@+id/resetButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onClick"
             android:text="Reset" />
 
         <Button
-            android:id="@+id/button11"
+            android:id="@+id/quitButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onClick"
             android:text="Quit" />
 
 
