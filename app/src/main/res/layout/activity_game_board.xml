@@ -27,58 +27,68 @@
         android:paddingBottom="10dp"
         android:paddingTop="10dp">
 
+
         <ImageButton
             android:id="@+id/TTT0"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:text="Button" />
+            android:text="Button"
+            android:layout_margin="10dp"/>
 
         <ImageButton
             android:id="@+id/TTT1"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:layout_margin="10dp"
             android:text="Button" />
 
         <ImageButton
             android:id="@+id/TTT2"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:layout_margin="10dp"
             android:text="Button" />
 
         <ImageButton
             android:id="@+id/TTT3"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:layout_margin="10dp"
             android:text="Button" />
 
         <ImageButton
             android:id="@+id/TTT4"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:layout_margin="10dp"
             android:text="Button" />
 
         <ImageButton
             android:id="@+id/TTT5"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:layout_margin="10dp"
             android:text="Button" />
 
         <ImageButton
             android:id="@+id/TTT6"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:layout_margin="10dp"
             android:text="Button" />
 
         <ImageButton
             android:id="@+id/TTT7"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:layout_margin="10dp"
             android:text="Button" />
 
         <ImageButton
             android:id="@+id/TTT8"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:layout_margin="10dp"
             android:text="Button" />
     </GridLayout>
 

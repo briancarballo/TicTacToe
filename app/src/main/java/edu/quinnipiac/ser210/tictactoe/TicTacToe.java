@@ -2,6 +2,7 @@ package edu.quinnipiac.ser210.tictactoe;
 
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,14 +18,21 @@ import java.util.concurrent.ThreadLocalRandom;
 public class TicTacToe implements ITicTacToe {
 		 
 	   // The game board and the game status
-	   private static final int ROWS = 3, COLS = 3; // number of rows and columns
-	   private int[][] board = new int[ROWS][COLS]; // game board in 2D array
+	   	private static final int ROWS = 3, COLS = 3; // number of rows and columns
+		private int[][] board = new int[ROWS][COLS]; // game board in 2D array
+		private int moves;
+
 	  
 	/**
 	 * clear board and set current player   
 	 */
 	public TicTacToe(){
-		
+		moves = 0;
+	}
+
+	public TicTacToe(int[][] board, int moves){
+		this.board = board;
+		this.moves = moves;
 	}
 	@Override
 	public void clearBoard() {
@@ -32,6 +40,7 @@ public class TicTacToe implements ITicTacToe {
 		for(int[] row: board) {
 			Arrays.fill(row, 0);
 		}
+		moves = 0;
 	}
 
 	@Override
@@ -41,7 +50,10 @@ public class TicTacToe implements ITicTacToe {
 			System.out.println("Illegal move, turn forfeited");
 		}
 		//Places mark on board for player
-		else board[location/3][location%3] = player; 
+		else {
+			board[location/3][location%3] = player;
+			moves++;
+		}
 	}
 
 	@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -68,7 +80,7 @@ public class TicTacToe implements ITicTacToe {
 	public int checkForWinner() {
 		int check1,check2,check3;
 		int tieCheck = 0;
-		
+		Log.d("moves", String.valueOf(moves));
 		//Checks each row for winner
 		for(int r = 0; r < 3; r++){
 			check1 = board[r][0];
@@ -96,10 +108,13 @@ public class TicTacToe implements ITicTacToe {
 		if(check1 == check2 && check2 == check3 && check3 > 0) return check1 + 1;
 		
 		//Checks for tie
-		for(int[] row: board) {
+		/*for(int[] row: board) {
 			if(Arrays.binarySearch(row, 0) == -1) tieCheck++;
 		}
-		if(tieCheck == 3) return 1;
+		if(tieCheck == 3) {
+			return 1;
+		}*/
+		if (moves >= 9) return 1;
 		return 0;
 		
 	}
@@ -139,6 +154,10 @@ public class TicTacToe implements ITicTacToe {
 	         case NOUGHT: state.add(1); break;
 	         case CROSS:  state.add(2); break;
 	      }
+	   }
+
+	   public int[][] getBoard(){
+	   	return board;
 	   }
 
 }
