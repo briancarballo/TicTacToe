@@ -42,6 +42,7 @@ public class GameBoard extends Activity implements View.OnClickListener {
     public boolean runGame;
     public TextView turn;
     public String name;
+    public Button reset;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,7 @@ public class GameBoard extends Activity implements View.OnClickListener {
         TextView returnValue = (TextView) findViewById(R.id.welcome);
         returnValue.setText("Welcome to Tic Tac Toe, " + name + "!");
         turn = (TextView) findViewById(R.id.turn);
+        reset = (Button) findViewById(R.id.resetButton);
         buttons = new ArrayList<ImageButton>();
         for (int id : BUTTON_IDS) {
             ImageButton button = (ImageButton) findViewById(id);
@@ -85,6 +87,7 @@ public class GameBoard extends Activity implements View.OnClickListener {
                 moves = 0;
                 runGame = true;
                 turn.setText("Your Turn!");
+                reset.setVisibility(View.INVISIBLE);
                 break;
             //Log.d("Index of button", String.valueOf(buttons.indexOf(findViewById(v.getId()))));
             case R.id.quitButton:
@@ -96,14 +99,25 @@ public class GameBoard extends Activity implements View.OnClickListener {
 
                     game.setMove(1, buttons.indexOf(findViewById(v.getId())));
                     moves++;
+                    winner = game.checkForWinner();
+                    if(winner != 0) {
+                        runGame = false;
+                        reset.setVisibility(View.VISIBLE);
+                    }
                 }
                 if (moves < 9 && runGame) {
                     turn.setText("Computer's turn");
                     game.setMove(2, game.getComputerMove());
                     moves++;
+                    winner = game.checkForWinner();
+                    if (winner != 0) {
+                        runGame = false;
+                        reset.setVisibility(View.VISIBLE);
+                    }
+                    else turn.setText("Your turn, " + name);
                 }
-                turn.setText("Your turn, " + name);
-                winner = game.checkForWinner();
+
+
 
                 switch (winner) {
                     case 0:
