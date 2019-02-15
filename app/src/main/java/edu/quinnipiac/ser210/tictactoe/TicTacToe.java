@@ -79,8 +79,6 @@ public class TicTacToe implements ITicTacToe {
 	@Override
 	public int checkForWinner() {
 		int check1,check2,check3;
-		int tieCheck = 0;
-		Log.d("moves", String.valueOf(moves));
 		//Checks each row for winner
 		for(int r = 0; r < 3; r++){
 			check1 = board[r][0];
@@ -106,21 +104,11 @@ public class TicTacToe implements ITicTacToe {
 		check2 = board[1][1];
 		check3 = board[2][0];
 		if(check1 == check2 && check2 == check3 && check3 > 0) return check1 + 1;
-		
-		//Checks for tie
-		/*for(int[] row: board) {
-			if(Arrays.binarySearch(row, 0) == -1) tieCheck++;
-		}
-		if(tieCheck == 3) {
-			return 1;
-		}*/
+
 		if (moves >= 9) return 1;
 		return 0;
 		
 	}
-	
-	
-	
 
 	  /**
 	   *  Print the game board 
@@ -130,16 +118,8 @@ public class TicTacToe implements ITicTacToe {
 	      for (int row = 0; row < ROWS; ++row) {
 	         for (int col = 0; col < COLS; ++col) {
 	            printCell(board[row][col],state); // print each of the cells
-	            //if (col != COLS - 1) {
-	              // System.out.print("|");   // print vertical partition
-	           // }
 	         }
-	        // System.out.println();
-	         //if (row != ROWS - 1) {
-	           // System.out.println("-----------"); // print horizontal partition
-	        // }
 	      }
-	      //System.out.println();
 	      Integer[] arr = state.toArray(new Integer[state.size()]);
 	      return arr;
 	   }

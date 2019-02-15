@@ -6,6 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+/**
+ * Help Screen Activity
+ * Author: Brian Carballo
+ * SER210
+ *
+ * Contains instructions on how to play the game
+ */
 public class Help_Screen extends Activity implements View.OnClickListener {
 
     @Override

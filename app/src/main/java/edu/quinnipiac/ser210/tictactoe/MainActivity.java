@@ -4,12 +4,17 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
+/**
+ * Main Activity
+ * Author: Brian Carballo
+ * SER210
+ *
+ * Activity is mostly for navigation and sets name of player.
+ */
 public class MainActivity extends Activity implements View.OnClickListener {
 
     public static final String myKey = "ID_ONE";
@@ -26,6 +31,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         {
             case R.id.Start_Button:
                 final Intent startGame = new Intent(this,GameBoard.class);
+                //Asks for name if one isn't already given;
                 if (name == null){
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
                     builder.setTitle("What is your name?");
@@ -33,7 +39,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     final EditText input = new EditText(this);
                     builder.setView(input);
 
-                    // Set up the buttons
                     builder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -52,6 +57,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     builder.show();
                     break;
                 }
+                //Passes name to next activity
                 startGame.putExtra(myKey, name);
                 startActivity(startGame);
                 break;
@@ -59,6 +65,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 Intent help = new Intent(this,Help_Screen.class);
                 startActivity(help);
                 break;
+                //Changes name if user wants to
             case R.id.Name_Button:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle("What is your name?");

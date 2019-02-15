@@ -3,26 +3,30 @@ package edu.quinnipiac.ser210.tictactoe;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.media.Image;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.concurrent.ThreadLocalRandom;
 
 import static edu.quinnipiac.ser210.tictactoe.R.drawable;
+
+/**
+ * Gameboard Activity
+ * Author: Brian Carballo
+ * SER210
+ *
+ * Activity contains the main game board and allows user to play the game.
+ */
 
 public class GameBoard extends Activity implements View.OnClickListener {
 
     TicTacToe game;
     public ArrayList<ImageButton> buttons;
+
+    //Holds all the button ID's to initialize them all in a for loop
     public static final int[] BUTTON_IDS = {
             R.id.TTT0,
             R.id.TTT1,
@@ -35,11 +39,11 @@ public class GameBoard extends Activity implements View.OnClickListener {
             R.id.TTT8,
 
     };
-
-
-
+    //Variables for handling end of game
     public int moves, winner;
     public boolean runGame;
+
+    //Other displayable elements
     public TextView turn;
     public String name;
     public Button reset;
@@ -48,22 +52,30 @@ public class GameBoard extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_board);
+
+        //Sets the introductory text at the top of screen
         name = getIntent().getStringExtra(MainActivity.myKey);
-        TextView returnValue = (TextView) findViewById(R.id.welcome);
-        returnValue.setText("Welcome to Tic Tac Toe, " + name + "!");
+        TextView welcomeText = (TextView) findViewById(R.id.welcome);
+        welcomeText.setText("Welcome to Tic Tac Toe, " + name + "!");
+        //Initializes display elements
         turn = (TextView) findViewById(R.id.turn);
         reset = (Button) findViewById(R.id.resetButton);
+        winner = 0;
+
+        //Initializes all buttons and adds to ArrayList for identification
         buttons = new ArrayList<ImageButton>();
         for (int id : BUTTON_IDS) {
             ImageButton button = (ImageButton) findViewById(id);
             button.setOnClickListener(this); // maybe
             buttons.add(button);
         }
-        winner = 0;
+
+        //Handles bundle contents
         if (savedInstanceState != null) {
             moves = savedInstanceState.getInt("moves");
             game = new TicTacToe((int[][]) savedInstanceState.getSerializable("gameBoard"),moves);
             runGame = savedInstanceState.getBoolean("gameState");
+            if (runGame == false) reset.setVisibility(View.VISIBLE);
 
         } else {
             game = new TicTacToe();
@@ -71,8 +83,6 @@ public class GameBoard extends Activity implements View.OnClickListener {
             runGame = true;
 
         }
-
-
         printBoard();
     }
 
@@ -81,6 +91,7 @@ public class GameBoard extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            //Resets game values
             case R.id.resetButton:
                 game.clearBoard();
                 printBoard();
@@ -89,16 +100,21 @@ public class GameBoard extends Activity implements View.OnClickListener {
                 turn.setText("Your Turn!");
                 reset.setVisibility(View.INVISIBLE);
                 break;
-            //Log.d("Index of button", String.valueOf(buttons.indexOf(findViewById(v.getId()))));
+
             case R.id.quitButton:
                 Intent backToStart = new Intent(this, MainActivity.class);
                 startActivity(backToStart);
                 break;
-            default:
-                if (moves < 9 && runGame) {
 
+            //Handles all of the game buttons
+            default:
+                //Makes sure that game hasn't ended before doing anything
+                if (moves < 9 && runGame) {
+                    /* Identifies button pressed by taking the index of the button from the array
+                     which is mapped according to position on the board*/
                     game.setMove(1, buttons.indexOf(findViewById(v.getId())));
                     moves++;
+                    //Ends game if player wins
                     winner = game.checkForWinner();
                     if(winner != 0) {
                         runGame = false;
@@ -118,7 +134,7 @@ public class GameBoard extends Activity implements View.OnClickListener {
                 }
 
 
-
+                //If there's a winner, display it under the board
                 switch (winner) {
                     case 0:
                         break;
@@ -135,30 +151,32 @@ public class GameBoard extends Activity implements View.OnClickListener {
                         runGame = false;
                         break;
                 }
-
                 printBoard();
-
                 break;
         }
 
     }
 
+
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        //Places the game array from the TicTacToe class, number of moves, and game state into bundle
         outState.putSerializable("gameBoard",game.getBoard());
         outState.putInt("moves", moves);
         outState.putBoolean("gameState",runGame);
     }
 
     public void printBoard() {
+        //Grabs array from TicTacToe
         Integer[] state = game.printBoard();
+        //Counter iterates through button array
         int counter = 0;
+        //Determines what image is placed over the button based on current game state
         for (int i : state) {
             switch (i) {
                 case 0:
                     buttons.get(counter).setBackgroundResource(android.R.color.darker_gray);
-                    //buttons.get(counter).setBackgroundResource(drawable.square);
                     break;
                 case 1:
                     buttons.get(counter).setBackgroundResource(drawable.ttto);
