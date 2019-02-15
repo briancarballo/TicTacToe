@@ -25,7 +25,33 @@ public class MainActivity extends Activity implements View.OnClickListener {
         switch(v.getId())
         {
             case R.id.Start_Button:
-                Intent startGame = new Intent(this,GameBoard.class);
+                final Intent startGame = new Intent(this,GameBoard.class);
+                if (name == null){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setTitle("What is your name?");
+
+                    final EditText input = new EditText(this);
+                    builder.setView(input);
+
+                    // Set up the buttons
+                    builder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            name = input.getText().toString();
+                            startGame.putExtra(myKey, name);
+                            startActivity(startGame);
+                        }
+                    });
+                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+
+                    builder.show();
+                    break;
+                }
                 startGame.putExtra(myKey, name);
                 startActivity(startGame);
                 break;
