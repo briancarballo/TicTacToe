@@ -57,8 +57,6 @@ public class GameBoard extends Activity implements View.OnClickListener {
             button.setOnClickListener(this); // maybe
             buttons.add(button);
         }
-
-
         winner = 0;
         if (savedInstanceState != null) {
             moves = savedInstanceState.getInt("moves");
@@ -71,6 +69,8 @@ public class GameBoard extends Activity implements View.OnClickListener {
             runGame = true;
 
         }
+
+
         printBoard();
     }
 
